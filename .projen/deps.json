@@ -1,7 +1,15 @@
 {
   "dependencies": [
     {
+      "name": "@aws-sdk/client-secrets-manager",
+      "type": "build"
+    },
+    {
       "name": "@matthewbonig/cdk-construct-library",
+      "type": "build"
+    },
+    {
+      "name": "@types/aws-lambda",
       "type": "build"
     },
     {
@@ -22,6 +30,23 @@
     {
       "name": "@typescript-eslint/parser",
       "version": "^6",
+      "type": "build"
+    },
+    {
+      "name": "aws-cdk",
+      "version": "^2",
+      "type": "build"
+    },
+    {
+      "name": "aws-sdk-client-mock",
+      "type": "build"
+    },
+    {
+      "name": "aws-sdk-client-mock-jest",
+      "type": "build"
+    },
+    {
+      "name": "esbuild",
       "type": "build"
     },
     {

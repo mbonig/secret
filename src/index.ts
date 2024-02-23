@@ -1,1 +1,1 @@
-export * from './MyConstruct';
+export * from './Secret';

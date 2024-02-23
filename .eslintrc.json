@@ -148,6 +148,7 @@
         "devDependencies": [
           "**/test/**",
           "**/build-tools/**",
+          "src/EventHandler/EventHandler.lambda.ts",
           ".projenrc.ts",
           "projenrc/**/*.ts"
         ],
