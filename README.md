@@ -5,6 +5,27 @@ This isn't exactly a flaw of the CDK, but of how CloudFormation handles this pro
 
 So, this library has a single construct with a single intention, to allow you to update the `generateSecretString` property without recreating the secret.
 
+## Design Philosophy
+
+Secrets are the AWS-preferred method for passing configuration values to runtime components. However, with the existing
+secret it's painful to manage the contents of a secret over the life of a project. You can't provide all your configuration
+values directly in your `generateSecretString` property because you'll then likely expose sensitive
+IaC. However, you also can't just leave this field completely blank because it will either make post-deployment changes
+to the secret more error-prone (as someone may manually enter in field names incorrectly) or it will make it impossible
+for some services to work at all until a post-deployment change is made, like ECS.
+
+So, this construct is designed to make it so you can update the `generateSecretString` property without recreating the secret.
+This allows you to define the basic shape of a secret through your IaC ensuring that post-deployment updates are done
+with fewer errors. 
+
+It is a fundamental principle of this construct that:
+* The values stored in secrets are required to be updated manually outside of the IaC process.
+* The shape of the secret is defined in the IaC process.
+* Changes to the shape of the secret are made through the IaC process. 
+* Changes to the shape and values of the secret in IaC do not affect fields and values that were not changed in IaC.
+* Changes made to the value of the secret through an outside process are retained unless explicitly changed through IaC.
+
+
 ## Usage
 
 ```typescript
