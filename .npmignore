@@ -23,5 +23,3 @@ tsconfig.tsbuildinfo
 /.eslintrc.json
 !.jsii
 !/assets/
-test/.tmp
-test/Secret.integ.snapshot

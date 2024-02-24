@@ -1,0 +1,106 @@
+{
+  "version": "32.0.0",
+  "artifacts": {
+    "IntegrationTest-Secrets.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "IntegrationTest-Secrets.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "IntegrationTest-Secrets": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://071128183726/us-east-1",
+      "properties": {
+        "templateFile": "IntegrationTest-Secrets.template.json",
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::071128183726:role/cdk-hnb659fds-deploy-role-071128183726-us-east-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::071128183726:role/cdk-hnb659fds-cfn-exec-role-071128183726-us-east-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-071128183726-us-east-1/16c48275538f2acbdbd4464ea78a98c887cbd7533a8dd2fdc2d556a18f870cbf.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "IntegrationTest-Secrets.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::071128183726:role/cdk-hnb659fds-lookup-role-071128183726-us-east-1",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "IntegrationTest-Secrets.assets"
+      ],
+      "metadata": {
+        "/IntegrationTest-Secrets/MySecret/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MySecret8FE80B51"
+          }
+        ],
+        "/IntegrationTest-Secrets/MySecret/EventHandlerFunction/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MySecretEventHandlerFunctionServiceRole69834666"
+          }
+        ],
+        "/IntegrationTest-Secrets/MySecret/EventHandlerFunction/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MySecretEventHandlerFunctionServiceRoleDefaultPolicy9402D424"
+          }
+        ],
+        "/IntegrationTest-Secrets/MySecret/EventHandlerFunction/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MySecretEventHandlerFunction1FE2C50D"
+          }
+        ],
+        "/IntegrationTest-Secrets/MySecret/CustomResourceProvider/framework-onEvent/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MySecretCustomResourceProviderframeworkonEventServiceRoleD1046060"
+          }
+        ],
+        "/IntegrationTest-Secrets/MySecret/CustomResourceProvider/framework-onEvent/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MySecretCustomResourceProviderframeworkonEventServiceRoleDefaultPolicy97BDCBE7"
+          }
+        ],
+        "/IntegrationTest-Secrets/MySecret/CustomResourceProvider/framework-onEvent/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MySecretCustomResourceProviderframeworkonEvent7C84A81C"
+          }
+        ],
+        "/IntegrationTest-Secrets/MySecret/GenerateSecretStringCR/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MySecretGenerateSecretStringCR9DD0E80D"
+          }
+        ],
+        "/IntegrationTest-Secrets/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/IntegrationTest-Secrets/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "IntegrationTest-Secrets"
+    },
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    }
+  }
+}

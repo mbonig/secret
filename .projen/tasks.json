@@ -175,78 +175,6 @@
         }
       ]
     },
-    "integ:Secret:assert": {
-      "name": "integ:Secret:assert",
-      "description": "assert the snapshot of integration test 'Secret'",
-      "steps": [
-        {
-          "exec": "[ -d \"test/Secret.integ.snapshot\" ] || (echo \"No snapshot available for integration test 'Secret'. Run 'projen integ:Secret:deploy' to capture.\" && exit 1)"
-        },
-        {
-          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/Secret.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/.tmp/Secret.integ/assert.cdk.out > /dev/null"
-        },
-        {
-          "exec": "diff -r -x asset.* -x cdk.out -x manifest.json -x tree.json test/Secret.integ.snapshot/ test/.tmp/Secret.integ/assert.cdk.out/"
-        }
-      ]
-    },
-    "integ:Secret:deploy": {
-      "name": "integ:Secret:deploy",
-      "description": "deploy integration test 'Secret' and capture snapshot",
-      "steps": [
-        {
-          "exec": "rm -fr test/.tmp/Secret.integ/deploy.cdk.out"
-        },
-        {
-          "exec": "cdk deploy --app \"ts-node -P tsconfig.dev.json test/Secret.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' --require-approval=never -o test/.tmp/Secret.integ/deploy.cdk.out"
-        },
-        {
-          "exec": "rm -fr test/Secret.integ.snapshot"
-        },
-        {
-          "exec": "mv test/.tmp/Secret.integ/deploy.cdk.out test/Secret.integ.snapshot"
-        },
-        {
-          "spawn": "integ:Secret:destroy"
-        }
-      ]
-    },
-    "integ:Secret:destroy": {
-      "name": "integ:Secret:destroy",
-      "description": "destroy integration test 'Secret'",
-      "steps": [
-        {
-          "exec": "cdk destroy --app test/Secret.integ.snapshot '**' --no-version-reporting"
-        }
-      ]
-    },
-    "integ:Secret:snapshot": {
-      "name": "integ:Secret:snapshot",
-      "description": "update snapshot for integration test \"Secret\"",
-      "steps": [
-        {
-          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/Secret.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/Secret.integ.snapshot > /dev/null"
-        }
-      ]
-    },
-    "integ:Secret:watch": {
-      "name": "integ:Secret:watch",
-      "description": "watch integration test 'Secret' (without updating snapshots)",
-      "steps": [
-        {
-          "exec": "cdk watch --app \"ts-node -P tsconfig.dev.json test/Secret.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' -o test/.tmp/Secret.integ/deploy.cdk.out"
-        }
-      ]
-    },
-    "integ:snapshot-all": {
-      "name": "integ:snapshot-all",
-      "description": "update snapshot for all integration tests",
-      "steps": [
-        {
-          "spawn": "integ:Secret:snapshot"
-        }
-      ]
-    },
     "package": {
       "name": "package",
       "description": "Creates the distribution package",
@@ -264,43 +192,7 @@
           "spawn": "package:js"
         },
         {
-          "spawn": "package:java"
-        },
-        {
           "spawn": "package:python"
-        },
-        {
-          "spawn": "package:dotnet"
-        },
-        {
-          "spawn": "package:go"
-        }
-      ]
-    },
-    "package:dotnet": {
-      "name": "package:dotnet",
-      "description": "Create dotnet language bindings",
-      "steps": [
-        {
-          "exec": "jsii-pacmak -v --target dotnet"
-        }
-      ]
-    },
-    "package:go": {
-      "name": "package:go",
-      "description": "Create go language bindings",
-      "steps": [
-        {
-          "exec": "jsii-pacmak -v --target go"
-        }
-      ]
-    },
-    "package:java": {
-      "name": "package:java",
-      "description": "Create java language bindings",
-      "steps": [
-        {
-          "exec": "jsii-pacmak -v --target java"
         }
       ]
     },
@@ -374,9 +266,6 @@
         },
         {
           "spawn": "eslint"
-        },
-        {
-          "spawn": "integ:Secret:assert"
         }
       ]
     },
@@ -385,7 +274,7 @@
       "description": "Run integration tests",
       "steps": [
         {
-          "exec": "npx cdk --app \"npx ts-node -P tsconfig.json --prefer-ts-exts test/Secret.integ.ts\"",
+          "exec": "npx cdk --app \"npx ts-node -P tsconfig.dev.json --prefer-ts-exts test/Secret.integration.ts\"",
           "receiveArgs": true
         }
       ]

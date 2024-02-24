@@ -1,4 +1,5 @@
 import { CustomResource } from 'aws-cdk-lib';
+import { Effect, PolicyStatement } from 'aws-cdk-lib/aws-iam';
 import { Secret as AWSSecret, SecretProps, SecretStringGenerator } from 'aws-cdk-lib/aws-secretsmanager';
 import { Provider } from 'aws-cdk-lib/custom-resources';
 import { Construct } from 'constructs';
@@ -19,6 +20,13 @@ export class Secret extends AWSSecret {
 
   private createCustomResource(generateSecretString: SecretStringGenerator) {
     const eventHandler = new EventHandlerFunction(this, 'EventHandlerFunction', {});
+    this.grantWrite(eventHandler);
+    this.grantRead(eventHandler);
+    eventHandler.addToRolePolicy(new PolicyStatement({
+      effect: Effect.ALLOW,
+      resources: ['*'],
+      actions: ['secretsmanager:GetRandomPassword'],
+    }));
     const provider = new Provider(this, 'CustomResourceProvider', {
       onEventHandler: eventHandler,
     });

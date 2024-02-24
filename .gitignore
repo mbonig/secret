@@ -52,12 +52,3 @@ tsconfig.json
 !/API.md
 /assets/
 !/src/EventHandler/EventHandler-function.ts
-test/.tmp
-test/Secret.integ.snapshot/asset.*
-test/Secret.integ.snapshot/**/asset.*
-test/Secret.integ.snapshot/cdk.out
-test/Secret.integ.snapshot/**/cdk.out
-test/Secret.integ.snapshot/manifest.json
-test/Secret.integ.snapshot/**/manifest.json
-test/Secret.integ.snapshot/tree.json
-test/Secret.integ.snapshot/**/tree.json

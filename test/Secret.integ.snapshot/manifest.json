@@ -1,0 +1,106 @@
+{
+  "version": "32.0.0",
+  "artifacts": {
+    "TestStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "TestStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "TestStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://071128183726/us-east-1",
+      "properties": {
+        "templateFile": "TestStack.template.json",
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::071128183726:role/cdk-hnb659fds-deploy-role-071128183726-us-east-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::071128183726:role/cdk-hnb659fds-cfn-exec-role-071128183726-us-east-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-071128183726-us-east-1/67b4559ce1de8afbf93f233450885433c37d9b24f210b376566b4ed822142973.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "TestStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::071128183726:role/cdk-hnb659fds-lookup-role-071128183726-us-east-1",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "TestStack.assets"
+      ],
+      "metadata": {
+        "/TestStack/MySecret/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MySecret8FE80B51"
+          }
+        ],
+        "/TestStack/MySecret/EventHandlerFunction/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MySecretEventHandlerFunctionServiceRole69834666"
+          }
+        ],
+        "/TestStack/MySecret/EventHandlerFunction/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MySecretEventHandlerFunctionServiceRoleDefaultPolicy9402D424"
+          }
+        ],
+        "/TestStack/MySecret/EventHandlerFunction/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MySecretEventHandlerFunction1FE2C50D"
+          }
+        ],
+        "/TestStack/MySecret/CustomResourceProvider/framework-onEvent/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MySecretCustomResourceProviderframeworkonEventServiceRoleD1046060"
+          }
+        ],
+        "/TestStack/MySecret/CustomResourceProvider/framework-onEvent/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MySecretCustomResourceProviderframeworkonEventServiceRoleDefaultPolicy97BDCBE7"
+          }
+        ],
+        "/TestStack/MySecret/CustomResourceProvider/framework-onEvent/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MySecretCustomResourceProviderframeworkonEvent7C84A81C"
+          }
+        ],
+        "/TestStack/MySecret/GenerateSecretStringCR/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MySecretGenerateSecretStringCR9DD0E80D"
+          }
+        ],
+        "/TestStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/TestStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "TestStack"
+    },
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    }
+  }
+}

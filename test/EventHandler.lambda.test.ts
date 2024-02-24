@@ -4,7 +4,6 @@ import {
   PutSecretValueCommand,
   SecretsManagerClient,
 } from '@aws-sdk/client-secrets-manager';
-import { CdkCustomResourceEvent } from 'aws-lambda';
 import { mockClient } from 'aws-sdk-client-mock';
 import 'aws-sdk-client-mock-jest';
 
@@ -12,7 +11,7 @@ function generateEvent(param: {
   ResourceProperties: any;
   OldResourceProperties?: any;
   RequestType: 'Create' | 'Update' | 'Delete';
-}): CdkCustomResourceEvent {
+}): any {
   return {
     RequestType: param.RequestType,
     ServiceToken: 'arn:aws:lambda:us-east-1:071128183726:function:TestStack-MySecretCustomResourceProviderframeworko-1ZDQpW1kgurO',
@@ -34,7 +33,7 @@ function generateEvent(param: {
       ServiceToken: 'arn:aws:lambda:us-east-1:071128183726:function:TestStack-MySecretCustomResourceProviderframeworko-1ZDQpW1kgurO',
       ...param.OldResourceProperties,
     },
-  } as CdkCustomResourceEvent;
+  };
 }
 
 describe('EventHandler', () => {
@@ -58,7 +57,7 @@ describe('EventHandler', () => {
         ResourceProperties: {
           Secret: SECRET_ID,
           GenerateSecretString: {
-            SecretStringTemplate: '{"username":"my-username","password":"some-password"}',
+            secretStringTemplate: '{"username":"my-username","password":"some-password"}',
           },
         },
       }));
@@ -85,8 +84,8 @@ describe('EventHandler', () => {
         ResourceProperties: {
           Secret: SECRET_ID,
           GenerateSecretString: {
-            SecretStringTemplate: '{"username":"my-username","password":"some-password"}',
-            GenerateStringKey: 'password',
+            secretStringTemplate: '{"username":"my-username","password":"some-password"}',
+            generateStringKey: 'password',
           },
         },
       }));
@@ -125,16 +124,16 @@ describe('EventHandler', () => {
         ResourceProperties: {
           Secret: SECRET_ID,
           GenerateSecretString: {
-            SecretStringTemplate: '{"username":"my-username","password":"some-password"}',
-            GenerateStringKey: 'password',
-            ExcludeCharacters: 'abc',
-            ExcludeLowercase: true,
-            ExcludeNumbers: true,
-            ExcludePunctuation: true,
-            ExcludeUppercase: true,
-            IncludeSpace: true,
-            PasswordLength: 40,
-            RequireEachIncludedType: true,
+            secretStringTemplate: '{"username":"my-username","password":"some-password"}',
+            generateStringKey: 'password',
+            excludeCharacters: 'abc',
+            excludeLowercase: true,
+            excludeNumbers: true,
+            excludePunctuation: true,
+            excludeUppercase: true,
+            includeSpace: true,
+            passwordLength: 40,
+            requireEachIncludedType: true,
           },
         },
       }));
@@ -171,7 +170,7 @@ describe('EventHandler', () => {
         OldResourceProperties: {
           Secret: 'arn:aws:secretsmanager:us-east-1:071128183726:secret:MySecret8FE80B51-cS1evYuDw5EE-sBg10U',
           GenerateSecretString: {
-            SecretStringTemplate: JSON.stringify({
+            secretStringTemplate: JSON.stringify({
               username: 'my-username',
               password: 'some-password',
             }),
@@ -180,7 +179,7 @@ describe('EventHandler', () => {
         ResourceProperties: {
           Secret: 'arn:aws:secretsmanager:us-east-1:071128183726:secret:MySecret8FE80B51-cS1evYuDw5EE-sBg10U',
           GenerateSecretString: {
-            SecretStringTemplate: JSON.stringify({
+            secretStringTemplate: JSON.stringify({
               'username': 'my-username',
               'password': 'some-password',
               'some-new-key': 'some-new-value',
@@ -220,7 +219,7 @@ describe('EventHandler', () => {
         OldResourceProperties: {
           Secret: 'arn:aws:secretsmanager:us-east-1:071128183726:secret:MySecret8FE80B51-cS1evYuDw5EE-sBg10U',
           GenerateSecretString: {
-            SecretStringTemplate: JSON.stringify({
+            secretStringTemplate: JSON.stringify({
               username: 'my-username',
               password: 'some-password',
             }),
@@ -229,7 +228,7 @@ describe('EventHandler', () => {
         ResourceProperties: {
           Secret: 'arn:aws:secretsmanager:us-east-1:071128183726:secret:MySecret8FE80B51-cS1evYuDw5EE-sBg10U',
           GenerateSecretString: {
-            SecretStringTemplate: JSON.stringify({
+            secretStringTemplate: JSON.stringify({
               username: 'my-username',
               password: 'some-new-password',
             }),
@@ -267,7 +266,7 @@ describe('EventHandler', () => {
         OldResourceProperties: {
           Secret: 'arn:aws:secretsmanager:us-east-1:071128183726:secret:MySecret8FE80B51-cS1evYuDw5EE-sBg10U',
           GenerateSecretString: {
-            SecretStringTemplate: JSON.stringify({
+            secretStringTemplate: JSON.stringify({
               username: 'my-username',
               password: 'some-password',
             }),
@@ -276,7 +275,7 @@ describe('EventHandler', () => {
         ResourceProperties: {
           Secret: 'arn:aws:secretsmanager:us-east-1:071128183726:secret:MySecret8FE80B51-cS1evYuDw5EE-sBg10U',
           GenerateSecretString: {
-            SecretStringTemplate: JSON.stringify({
+            secretStringTemplate: JSON.stringify({
               username: 'my-username',
             }),
           },
@@ -318,11 +317,11 @@ describe('EventHandler', () => {
           OldResourceProperties: {
             Secret: 'arn:aws:secretsmanager:us-east-1:071128183726:secret:MySecret8FE80B51-cS1evYuDw5EE-sBg10U',
             GenerateSecretString: {
-              SecretStringTemplate: JSON.stringify({
+              secretStringTemplate: JSON.stringify({
                 username: 'my-username',
                 password: 'some-password',
               }),
-              GenerateStringKey: 'username',
+              generateStringKey: 'username',
               ...previousValues,
 
             },
@@ -330,11 +329,11 @@ describe('EventHandler', () => {
           ResourceProperties: {
             Secret: 'arn:aws:secretsmanager:us-east-1:071128183726:secret:MySecret8FE80B51-cS1evYuDw5EE-sBg10U',
             GenerateSecretString: {
-              SecretStringTemplate: JSON.stringify({
+              secretStringTemplate: JSON.stringify({
                 username: 'my-username',
                 password: 'some-password',
               }),
-              GenerateStringKey: 'username',
+              generateStringKey: 'username',
               ...newValues,
             },
           },
@@ -356,9 +355,9 @@ describe('EventHandler', () => {
 
         // act
         await act({
-          GenerateStringKey: 'password',
+          generateStringKey: 'password',
         }, {
-          GenerateStringKey: 'username',
+          generateStringKey: 'username',
         });
 
         // assert
@@ -371,9 +370,9 @@ describe('EventHandler', () => {
 
         // act
         await act({
-          ExcludeCharacters: 'abc',
+          excludeCharacters: 'abc',
         }, {
-          ExcludeCharacters: 'def',
+          excludeCharacters: 'def',
         });
         expectNewRandomValue();
       });
@@ -384,9 +383,9 @@ describe('EventHandler', () => {
 
         // act
         await act({
-          ExcludeLowercase: true,
+          excludeLowercase: true,
         }, {
-          ExcludeLowercase: false,
+          excludeLowercase: false,
         });
         expectNewRandomValue();
       });
@@ -397,9 +396,9 @@ describe('EventHandler', () => {
 
         // act
         await act({
-          ExcludeNumbers: true,
+          excludeNumbers: true,
         }, {
-          ExcludeNumbers: false,
+          excludeNumbers: false,
         });
         expectNewRandomValue();
       });
@@ -410,9 +409,9 @@ describe('EventHandler', () => {
 
         // act
         await act({
-          ExcludePunctuation: true,
+          excludePunctuation: true,
         }, {
-          ExcludePunctuation: false,
+          excludePunctuation: false,
         });
         expectNewRandomValue();
       });
@@ -423,9 +422,9 @@ describe('EventHandler', () => {
 
         // act
         await act({
-          ExcludeUppercase: true,
+          excludeUppercase: true,
         }, {
-          ExcludeUppercase: false,
+          excludeUppercase: false,
         });
         expectNewRandomValue();
       });
@@ -436,9 +435,9 @@ describe('EventHandler', () => {
 
         // act
         await act({
-          IncludeSpace: true,
+          includeSpace: true,
         }, {
-          IncludeSpace: false,
+          includeSpace: false,
         });
         expectNewRandomValue();
       });
@@ -449,9 +448,9 @@ describe('EventHandler', () => {
 
         // act
         await act({
-          PasswordLength: 30,
+          passwordLength: 30,
         }, {
-          PasswordLength: 31,
+          passwordLength: 31,
         });
         expectNewRandomValue();
       });
@@ -461,9 +460,9 @@ describe('EventHandler', () => {
 
         // act
         await act({
-          RequireEachIncludedType: true,
+          requireEachIncludedType: true,
         }, {
-          RequireEachIncludedType: false,
+          requireEachIncludedType: false,
         });
         expectNewRandomValue();
       });
@@ -479,7 +478,7 @@ describe('EventHandler', () => {
         ResourceProperties: {
           Secret: 'arn:aws:secretsmanager:us-east-1:071128183726:secret:MySecret8FE80B51-cS1evYuDw5EE-sBg10U',
           GenerateSecretString: {
-            SecretStringTemplate: '{"username":"my-username","password":"some-password"}',
+            secretStringTemplate: '{"username":"my-username","password":"some-password"}',
           },
         },
       }));

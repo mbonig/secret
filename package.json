@@ -1,8 +1,8 @@
 {
-  "name": "@matthewbonig/my-construct",
+  "name": "@matthewbonig/secret",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mbonig/my-construct.git"
+    "url": "https://github.com/mbonig/secret.git"
   },
   "scripts": {
     "build": "npx projen build",
@@ -17,17 +17,8 @@
     "docgen": "npx projen docgen",
     "eject": "npx projen eject",
     "eslint": "npx projen eslint",
-    "integ:Secret:assert": "npx projen integ:Secret:assert",
-    "integ:Secret:deploy": "npx projen integ:Secret:deploy",
-    "integ:Secret:destroy": "npx projen integ:Secret:destroy",
-    "integ:Secret:snapshot": "npx projen integ:Secret:snapshot",
-    "integ:Secret:watch": "npx projen integ:Secret:watch",
-    "integ:snapshot-all": "npx projen integ:snapshot-all",
     "package": "npx projen package",
     "package-all": "npx projen package-all",
-    "package:dotnet": "npx projen package:dotnet",
-    "package:go": "npx projen package:go",
-    "package:java": "npx projen package:java",
     "package:js": "npx projen package:js",
     "package:python": "npx projen package:python",
     "post-compile": "npx projen post-compile",
@@ -46,14 +37,11 @@
     "organization": false
   },
   "devDependencies": {
-    "@aws-sdk/client-secrets-manager": "^3.521.0",
-    "@matthewbonig/cdk-construct-library": "^0.0.10",
-    "@types/aws-lambda": "8.10.134",
-    "@types/jest": "^27",
-    "@types/node": "^16",
+    "@matthewbonig/cdk-construct-library": "0.0.12",
+    "@types/jest": "28",
+    "@types/node": "^18",
     "@typescript-eslint/eslint-plugin": "^6",
     "@typescript-eslint/parser": "^6",
-    "aws-cdk": "^2",
     "aws-cdk-lib": "2.85.0",
     "aws-sdk-client-mock": "^3.0.1",
     "aws-sdk-client-mock-jest": "^3.0.1",
@@ -62,16 +50,16 @@
     "eslint": "^8",
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-import": "^2.29.1",
-    "jest": "^27",
+    "jest": "28",
     "jest-junit": "^15",
-    "jsii": "1.x",
+    "jsii": "~5.2.0",
     "jsii-diff": "^1.94.0",
     "jsii-docgen": "^10.3.17",
     "jsii-pacmak": "^1.94.0",
-    "jsii-rosetta": "1.x",
+    "jsii-rosetta": "~5.2.0",
     "projen": "^0.79.27",
     "standard-version": "^9",
-    "ts-jest": "^27",
+    "ts-jest": "28",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
   },
@@ -79,10 +67,12 @@
     "aws-cdk-lib": "^2.85.0",
     "constructs": "^10.1.203"
   },
-  "resolutions": {
-    "@types/babel__traverse": "7.18.2",
-    "@types/prettier": "2.6.0"
+  "dependencies": {
+    "@aws-sdk/client-secrets-manager": "^3.521.0"
   },
+  "bundledDependencies": [
+    "@aws-sdk/client-secrets-manager"
+  ],
   "keywords": [
     "awscdk",
     "cdk"
@@ -138,23 +128,9 @@
   "jsii": {
     "outdir": "dist",
     "targets": {
-      "java": {
-        "package": "com.matthewbonig.MyConstruct",
-        "maven": {
-          "groupId": "com.matthewbonig",
-          "artifactId": "my-construct"
-        }
-      },
       "python": {
-        "distName": "mbonig.my-construct",
-        "module": "mbonig_my_construct"
-      },
-      "dotnet": {
-        "namespace": "MBonig.MyConstruct",
-        "packageId": "MBonig.MyConstruct"
-      },
-      "go": {
-        "moduleName": "github.com/mbonig/cdk-go"
+        "distName": "mbonig.secret",
+        "module": "mbonig_secret"
       }
     },
     "tsc": {
