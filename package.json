@@ -1,5 +1,6 @@
 {
   "name": "@matthewbonig/secret",
+  "description": "An AWS CDK construct for creating a secret in AWS Secrets Manager, without losing manually changed values.",
   "repository": {
     "type": "git",
     "url": "https://github.com/mbonig/secret.git"
