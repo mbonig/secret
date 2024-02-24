@@ -1,6 +1,7 @@
 import { CdkConstruct } from '@matthewbonig/cdk-construct-library';
 
 const project = new CdkConstruct({
+  description: 'An AWS CDK construct for creating a secret in AWS Secrets Manager, without losing manually changed values.',
   devDeps: [
     '@matthewbonig/cdk-construct-library',
     'aws-sdk-client-mock',
