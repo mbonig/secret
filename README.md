@@ -25,6 +25,10 @@ It is a fundamental principle of this construct that:
 * Changes to the shape and values of the secret in IaC do not affect fields and values that were not changed in IaC.
 * Changes made to the value of the secret through an outside process are retained unless explicitly changed through IaC.
 
+> [!WARNING]  
+> If you have an existing aws-cdk-lib/aws_secretsmanager.Secret, you can replace it with this new construct. However,
+> when you update your stack the existing value will be completely wiped out and re-created using the new construct. 
+> Make a backup of your secret before using this new construct on an existing secret.
 
 ## Usage
 
