@@ -19,7 +19,7 @@ export class Secret extends AWSSecret {
   }
 
   private createCustomResource(generateSecretString: SecretStringGenerator) {
-    const eventHandler = new EventHandlerFunction(this, 'EventHandlerFunction', {});
+    const eventHandler = new EventHandlerFunction(this, 'EventHandlerFunction', { });
     this.grantWrite(eventHandler);
     this.grantRead(eventHandler);
     eventHandler.addToRolePolicy(new PolicyStatement({

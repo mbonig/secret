@@ -11,7 +11,6 @@ const project = new CdkConstruct({
   bundledDeps: [
     '@aws-sdk/client-secrets-manager',
   ],
-  disablePublishToNuGet: true,
   disablePublishToMaven: true,
   disablePublishToGo: true,
 });
