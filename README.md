@@ -5,6 +5,11 @@ This isn't exactly a flaw of the CDK, but of how CloudFormation handles this pro
 
 So, this library has a single construct with a single intention, to allow you to update the `generateSecretString` property without recreating the secret.
 
+> [!WARNING]  
+> If you have an existing aws-cdk-lib/aws_secretsmanager.Secret, you can replace it with this new construct. However,
+> when you update your stack the existing value will be completely wiped out and re-created using the new construct. 
+> Make a backup of your secret before using this new construct on an existing secret.
+
 ## Design Philosophy
 
 Secrets are the AWS-preferred method for passing configuration values to runtime components. However, with the existing
@@ -24,11 +29,6 @@ It is a fundamental principle of this construct that:
 * Changes to the shape of the secret are made through the IaC process. 
 * Changes to the shape and values of the secret in IaC do not affect fields and values that were not changed in IaC.
 * Changes made to the value of the secret through an outside process are retained unless explicitly changed through IaC.
-
-> [!WARNING]  
-> If you have an existing aws-cdk-lib/aws_secretsmanager.Secret, you can replace it with this new construct. However,
-> when you update your stack the existing value will be completely wiped out and re-created using the new construct. 
-> Make a backup of your secret before using this new construct on an existing secret.
 
 ## Usage
 
