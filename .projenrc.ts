@@ -13,6 +13,7 @@ const project = new CdkConstruct({
   ],
   disablePublishToMaven: true,
   disablePublishToGo: true,
+  cdkVersion: '2.181.1',
 });
 
 project.tryFindObjectFile('tsconfig.dev.json')!.addDeletionOverride('compilerOptions.charset');
