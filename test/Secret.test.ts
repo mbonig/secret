@@ -7,7 +7,9 @@ test('Snapshot', () => {
   const stack = new Stack();
 
   // WHEN
-  new Secret(stack, 'MyConstruct', {});
+  new Secret(stack, 'MyConstruct', {
+    generateSecretString: {},
+  });
 
   // THEN
   const assert = Template.fromStack(stack);
