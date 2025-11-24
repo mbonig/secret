@@ -1,4 +1,4 @@
-# @matthewbonig/secrets
+# @matthewbonig/secret
 
 The AWS Secrets Manager [Secret](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_secretsmanager.Secret.html) construct has a big footgun, **if you update the `generateSecretString` property, the secret gets recreated!**
 This isn't exactly a flaw of the CDK, but of how CloudFormation handles this property.
@@ -33,7 +33,7 @@ It is a fundamental principle of this construct that:
 ## Usage
 
 ```typescript
-import { Secret } from '@matthewbonig/secrets';
+import { Secret } from '@matthewbonig/secret';
 // ....
 new Secret(this, 'MySecret', {
   generateSecretString: {
