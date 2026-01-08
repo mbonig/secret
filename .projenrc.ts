@@ -1,8 +1,10 @@
 import { CdkConstruct } from '@matthewbonig/cdk-construct-library';
+import { LambdaRuntime } from 'projen/lib/awscdk';
 
 const project = new CdkConstruct({
   // # Set this manually until cdk-construct-library supports something newer
   projenVersion: '^0.98.33',
+  lambdaRuntime: LambdaRuntime.NODEJS_22_X,
   description: 'An AWS CDK construct for creating a secret in AWS Secrets Manager, without losing manually changed values.',
   devDeps: [
     '@matthewbonig/cdk-construct-library',
