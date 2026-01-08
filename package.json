@@ -39,39 +39,39 @@
     "organization": false
   },
   "devDependencies": {
-    "@matthewbonig/cdk-construct-library": "0.0.15",
+    "@matthewbonig/cdk-construct-library": "0.0.17",
     "@stylistic/eslint-plugin": "^2",
     "@types/jest": "28",
-    "@types/node": "^18",
+    "@types/node": "^25.0.3",
     "@typescript-eslint/eslint-plugin": "^8",
     "@typescript-eslint/parser": "^8",
     "aws-cdk-lib": "2.181.1",
-    "aws-sdk-client-mock": "^3.0.1",
-    "aws-sdk-client-mock-jest": "^3.0.1",
+    "aws-sdk-client-mock": "^4.1.0",
+    "aws-sdk-client-mock-jest": "^4.1.0",
     "commit-and-tag-version": "^12",
     "constructs": "10.1.203",
-    "esbuild": "^0.20.1",
+    "esbuild": "^0.27.2",
     "eslint": "^9",
-    "eslint-import-resolver-typescript": "^3.6.1",
-    "eslint-plugin-import": "^2.29.1",
+    "eslint-import-resolver-typescript": "^4.4.4",
+    "eslint-plugin-import": "^2.32.0",
     "jest": "28",
     "jest-junit": "^16",
     "jsii": "~5.5.0",
-    "jsii-diff": "^1.108.0",
+    "jsii-diff": "^1.125.0",
     "jsii-docgen": "^10.5.0",
-    "jsii-pacmak": "^1.108.0",
+    "jsii-pacmak": "^1.125.0",
     "jsii-rosetta": "~5.5.0",
-    "projen": "~0.88.2",
+    "projen": "^0.98.33",
     "ts-jest": "28",
     "ts-node": "^10.9.2",
-    "typescript": "^5.3.3"
+    "typescript": "^5.9.3"
   },
   "peerDependencies": {
     "aws-cdk-lib": "^2.181.1",
     "constructs": "^10.1.203"
   },
   "dependencies": {
-    "@aws-sdk/client-secrets-manager": "^3.521.0"
+    "@aws-sdk/client-secrets-manager": "^3.965.0"
   },
   "bundledDependencies": [
     "@aws-sdk/client-secrets-manager"
