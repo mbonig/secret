@@ -12,7 +12,7 @@ export class Secret extends AWSSecret {
       generateSecretString: undefined, // explicitly set this to undefined so that we never use the built-in functionality
     });
 
-    if (props.generateSecretString) {
+    if (props.generateSecretString?.secretStringTemplate) {
       // now we're going to use a custom resource for this instead
       this.createCustomResource(props.generateSecretString);
     }
