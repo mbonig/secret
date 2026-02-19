@@ -586,6 +586,25 @@ This is equal to `secretArn` in most cases, but is undefined when a full ARN is 
 
 ---
 
+#### Constants <a name="Constants" id="Constants"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@matthewbonig/secret.Secret.property.PROPERTY_INJECTION_ID">PROPERTY_INJECTION_ID</a></code> | <code>string</code> | Uniquely identifies this class. |
+
+---
+
+##### `PROPERTY_INJECTION_ID`<sup>Required</sup> <a name="PROPERTY_INJECTION_ID" id="@matthewbonig/secret.Secret.property.PROPERTY_INJECTION_ID"></a>
+
+```typescript
+public readonly PROPERTY_INJECTION_ID: string;
+```
+
+- *Type:* string
+
+Uniquely identifies this class.
+
+---
 
 
 
