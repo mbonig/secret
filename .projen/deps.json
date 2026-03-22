@@ -2,7 +2,7 @@
   "dependencies": [
     {
       "name": "@matthewbonig/cdk-construct-library",
-      "version": "0.0.18",
+      "version": "0.0.19",
       "type": "build"
     },
     {
@@ -12,7 +12,6 @@
     },
     {
       "name": "@types/jest",
-      "version": "28",
       "type": "build"
     },
     {
@@ -60,13 +59,12 @@
       "type": "build"
     },
     {
-      "name": "jest-junit",
-      "version": "^16",
+      "name": "jest",
       "type": "build"
     },
     {
-      "name": "jest",
-      "version": "28",
+      "name": "jest-junit",
+      "version": "^16",
       "type": "build"
     },
     {
@@ -96,12 +94,11 @@
     },
     {
       "name": "projen",
-      "version": "~0.88.2",
+      "version": "^0.99.21",
       "type": "build"
     },
     {
       "name": "ts-jest",
-      "version": "28",
       "type": "build"
     },
     {

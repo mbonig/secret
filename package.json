@@ -39,7 +39,7 @@
     "organization": false
   },
   "devDependencies": {
-    "@matthewbonig/cdk-construct-library": "0.0.18",
+    "@matthewbonig/cdk-construct-library": "0.0.19",
     "@stylistic/eslint-plugin": "^2",
     "@types/jest": "28",
     "@types/node": "^18",
@@ -61,7 +61,7 @@
     "jsii-docgen": "^10.5.0",
     "jsii-pacmak": "^1.127.0",
     "jsii-rosetta": "~5.9.0",
-    "projen": "~0.88.2",
+    "projen": "^0.99.21",
     "ts-jest": "28",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
