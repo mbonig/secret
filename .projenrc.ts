@@ -13,8 +13,11 @@ const project = new CdkConstruct({
   ],
   disablePublishToMaven: true,
   disablePublishToGo: true,
-  cdkVersion: '2.233.0',
+  cdkVersion: '2.244.0',
+  constructsVersion: '10.5.1',
 });
+
+project.addDevDeps('jsii@~5.9.0', 'jsii-rosetta@~5.9.0', 'jsii-diff@^1.127.0', 'jsii-pacmak@^1.127.0');
 
 project.tryFindObjectFile('tsconfig.dev.json')!.addDeletionOverride('compilerOptions.charset');
 
