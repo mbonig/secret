@@ -48,6 +48,7 @@ new Secret(scope: Construct, id: string, props: SecretProps)
 | <code><a href="#@matthewbonig/secret.Secret.addRotationSchedule">addRotationSchedule</a></code> | Adds a rotation schedule to the secret. |
 | <code><a href="#@matthewbonig/secret.Secret.addToResourcePolicy">addToResourcePolicy</a></code> | Adds a statement to the IAM resource policy associated with this secret. |
 | <code><a href="#@matthewbonig/secret.Secret.attach">attach</a></code> | Attach a target to this secret. |
+| <code><a href="#@matthewbonig/secret.Secret.cfnDynamicReferenceKey">cfnDynamicReferenceKey</a></code> | Returns a key which can be used within an AWS CloudFormation dynamic reference to dynamically load this secret from AWS Secrets Manager. |
 | <code><a href="#@matthewbonig/secret.Secret.denyAccountRootDelete">denyAccountRootDelete</a></code> | Denies the `DeleteSecret` action to all principals within the current account. |
 | <code><a href="#@matthewbonig/secret.Secret.grantRead">grantRead</a></code> | Grants reading the secret value to some role. |
 | <code><a href="#@matthewbonig/secret.Secret.grantWrite">grantWrite</a></code> | Grants writing and updating the secret value to some role. |
@@ -88,7 +89,7 @@ account for data recovery and cleanup later (`RemovalPolicy.RETAIN`).
 ##### `addReplicaRegion` <a name="addReplicaRegion" id="@matthewbonig/secret.Secret.addReplicaRegion"></a>
 
 ```typescript
-public addReplicaRegion(region: string, encryptionKey?: IKey): void
+public addReplicaRegion(region: string, encryptionKey?: IKeyRef): void
 ```
 
 Adds a replica region for the secret.
@@ -103,7 +104,7 @@ The name of the region.
 
 ###### `encryptionKey`<sup>Optional</sup> <a name="encryptionKey" id="@matthewbonig/secret.Secret.addReplicaRegion.parameter.encryptionKey"></a>
 
-- *Type:* aws-cdk-lib.aws_kms.IKey
+- *Type:* aws-cdk-lib.interfaces.aws_kms.IKeyRef
 
 The customer-managed encryption key to use for encrypting the secret value.
 
@@ -160,6 +161,24 @@ Attach a target to this secret.
 - *Type:* aws-cdk-lib.aws_secretsmanager.ISecretAttachmentTarget
 
 The target to attach.
+
+---
+
+##### `cfnDynamicReferenceKey` <a name="cfnDynamicReferenceKey" id="@matthewbonig/secret.Secret.cfnDynamicReferenceKey"></a>
+
+```typescript
+public cfnDynamicReferenceKey(options?: SecretsManagerSecretOptions): string
+```
+
+Returns a key which can be used within an AWS CloudFormation dynamic reference to dynamically load this secret from AWS Secrets Manager.
+
+> [https://docs.aws.amazon.com/secretsmanager/latest/userguide/cfn-example_reference-secret.html](https://docs.aws.amazon.com/secretsmanager/latest/userguide/cfn-example_reference-secret.html)
+
+###### `options`<sup>Optional</sup> <a name="options" id="@matthewbonig/secret.Secret.cfnDynamicReferenceKey.parameter.options"></a>
+
+- *Type:* aws-cdk-lib.SecretsManagerSecretOptions
+
+Options.
 
 ---
 
@@ -449,7 +468,7 @@ Return whether the given object is a Secret.
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#@matthewbonig/secret.Secret.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
-| <code><a href="#@matthewbonig/secret.Secret.property.env">env</a></code> | <code>aws-cdk-lib.ResourceEnvironment</code> | The environment this resource belongs to. |
+| <code><a href="#@matthewbonig/secret.Secret.property.env">env</a></code> | <code>aws-cdk-lib.interfaces.ResourceEnvironment</code> | The environment this resource belongs to. |
 | <code><a href="#@matthewbonig/secret.Secret.property.stack">stack</a></code> | <code>aws-cdk-lib.Stack</code> | The stack in which this resource is defined. |
 | <code><a href="#@matthewbonig/secret.Secret.property.secretArn">secretArn</a></code> | <code>string</code> | The ARN of the secret in AWS Secrets Manager. |
 | <code><a href="#@matthewbonig/secret.Secret.property.secretName">secretName</a></code> | <code>string</code> | The name of the secret. |
@@ -478,16 +497,17 @@ The tree node.
 public readonly env: ResourceEnvironment;
 ```
 
-- *Type:* aws-cdk-lib.ResourceEnvironment
+- *Type:* aws-cdk-lib.interfaces.ResourceEnvironment
 
 The environment this resource belongs to.
 
-For resources that are created and managed by the CDK
-(generally, those created by creating new class instances like Role, Bucket, etc.),
-this is always the same as the environment of the stack they belong to;
-however, for imported resources
-(those obtained from static methods like fromRoleArn, fromBucketName, etc.),
-that might be different than the stack they were imported into.
+For resources that are created and managed in a Stack (those created by
+creating new class instances like `new Role()`, `new Bucket()`, etc.), this
+is always the same as the environment of the stack they belong to.
+
+For referenced resources (those obtained from referencing methods like
+`Role.fromRoleArn()`, `Bucket.fromBucketName()`, etc.), they might be
+different than the stack they were imported into.
 
 ---
 
