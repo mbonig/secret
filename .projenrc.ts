@@ -3,7 +3,7 @@ import { CdkConstruct } from '@matthewbonig/cdk-construct-library';
 const project = new CdkConstruct({
   description: 'An AWS CDK construct for creating a secret in AWS Secrets Manager, without losing manually changed values.',
   devDeps: [
-    '@matthewbonig/cdk-construct-library',
+    '@matthewbonig/cdk-construct-library@0.0.18',
     'aws-sdk-client-mock',
     'aws-sdk-client-mock-jest',
   ],
@@ -13,8 +13,11 @@ const project = new CdkConstruct({
   ],
   disablePublishToMaven: true,
   disablePublishToGo: true,
-  cdkVersion: '2.201.0',
+  cdkVersion: '2.244.0',
+  constructsVersion: '10.5.1',
 });
+
+project.addDevDeps('jsii@~5.9.0', 'jsii-rosetta@~5.9.0', 'jsii-diff@^1.127.0', 'jsii-pacmak@^1.127.0');
 
 project.tryFindObjectFile('tsconfig.dev.json')!.addDeletionOverride('compilerOptions.charset');
 
