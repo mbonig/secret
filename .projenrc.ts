@@ -17,8 +17,6 @@ const project = new CdkConstruct({
   constructsVersion: '10.5.1',
 });
 
-project.addDevDeps('jsii@~5.9.0', 'jsii-rosetta@~5.9.0', 'jsii-diff@^1.127.0', 'jsii-pacmak@^1.127.0');
-
 project.tryFindObjectFile('tsconfig.dev.json')!.addDeletionOverride('compilerOptions.charset');
 
 project.addTask('test:integration', {

@@ -69,7 +69,6 @@
     },
     {
       "name": "jsii-diff",
-      "version": "^1.127.0",
       "type": "build"
     },
     {
@@ -79,17 +78,16 @@
     },
     {
       "name": "jsii-pacmak",
-      "version": "^1.127.0",
       "type": "build"
     },
     {
       "name": "jsii-rosetta",
-      "version": "~5.9.0",
+      "version": "^5.9.0",
       "type": "build"
     },
     {
       "name": "jsii",
-      "version": "~5.9.0",
+      "version": "^5.9.0",
       "type": "build"
     },
     {
